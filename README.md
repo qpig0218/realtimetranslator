@@ -121,6 +121,27 @@ pnpm build
 pnpm start
 ```
 
+## 部署到網頁
+
+以下步驟會透過 Docker 建立可直接在網頁上使用的部署版本:
+
+1. 建立 `.env` 檔案,填入前述所需的 Azure 及 OAuth 環境變數。
+2. 建置映像檔:
+
+   ```bash
+   docker build -t realtime-translator .
+   ```
+
+3. 啟動容器並對外開放 3000 埠位:
+
+   ```bash
+   docker run --env-file .env -p 3000:3000 realtime-translator
+   ```
+
+4. 造訪 `http://localhost:3000` 即可在瀏覽器中使用完整的即時翻譯服務。
+
+若要部署到雲端平臺(例如 Render、Fly.io 或自架伺服器),只需將上述 Docker 映像檔推送到對應的容器登錄庫,並設定相同的環境變數與埠號即可。
+
 ## 資料庫結構
 
 ### users
